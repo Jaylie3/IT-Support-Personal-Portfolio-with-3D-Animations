@@ -15,6 +15,16 @@ const systemStats = [
 ]
 
 const FULL_TEXT = 'Solving complex problems through stable systems.'
+const IDENTITY = {
+  name: 'Lindokuhle Nkosinathi Jali',
+  handle: 'Lindo',
+  role: 'ICT Support Specialist & Web Developer',
+  location: 'Bergville, KZN, South Africa',
+  education: 'IIE Rosebank College — GPA 78.60%',
+  github: 'https://github.com/Jaylie3',
+  githubHandle: 'Jaylie3',
+  currentRole: 'ICT Intern @ Okhahlamba DTDC',
+}
 
 export default function HeroSection() {
   const [showStats, setShowStats] = useState(false)
@@ -52,13 +62,33 @@ export default function HeroSection() {
               <span className="text-[#00ff88] font-mono text-sm tracking-widest">SYSTEM_ONLINE</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold font-mono leading-tight">
-              <span className="text-white">IT</span>
-              <br />
-              <span className="text-[#00d4ff] cyber-glow">SUPPORT</span>
-              <br />
-              <span className="text-white">SPECIALIST</span>
-            </h1>
+            <div>
+              <h1 className="text-5xl lg:text-7xl font-bold font-mono leading-tight">
+                <span className="text-white">IT</span>
+                <br />
+                <span className="text-[#00d4ff] cyber-glow">SUPPORT</span>
+                <br />
+                <span className="text-white">SPECIALIST</span>
+              </h1>
+              <div className="mt-3 font-mono text-sm text-gray-400">
+                <span className="text-[#00ff88]">◈</span>{' '}
+                <span className="text-white font-semibold">{IDENTITY.name}</span>
+                <span className="text-gray-600"> ·· </span>
+                <span className="text-[#00d4ff]/70">{IDENTITY.location}</span>
+              </div>
+              <div className="mt-1 font-mono text-xs text-gray-600">
+                {IDENTITY.education}
+                <span className="mx-2 text-[#00d4ff]/30">|</span>
+                <a
+                  href={IDENTITY.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#00d4ff]/60 hover:text-[#00d4ff] transition-colors"
+                >
+                  github.com/{IDENTITY.githubHandle}
+                </a>
+              </div>
+            </div>
 
             <div className="font-mono text-gray-400 text-lg min-h-[2rem]">
               <span className="text-[#00d4ff]">&gt;</span> {typedText}

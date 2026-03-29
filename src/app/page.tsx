@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic'
 import Navigation from './components/Navigation'
 import ContactSection from './components/ContactSection'
+import PersistentTerminal from './components/PersistentTerminal'
 
 const HeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false })
 const SkillsSection = dynamic(() => import('./components/SkillsSection'), { ssr: false })
@@ -12,11 +13,15 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0f]">
       <Navigation />
-      <HeroSection />
-      <SkillsSection />
-      <ToolsSection />
-      <PortfolioSection />
-      <ContactSection />
+      {/* md:pl-[72px] offsets content for the sidebar on desktop */}
+      <div className="md:pl-[72px]">
+        <HeroSection />
+        <SkillsSection />
+        <ToolsSection />
+        <PortfolioSection />
+        <ContactSection />
+      </div>
+      <PersistentTerminal />
     </main>
   )
 }

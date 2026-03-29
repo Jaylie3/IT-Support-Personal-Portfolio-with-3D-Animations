@@ -118,10 +118,11 @@ export default function ContactSection() {
             {/* Contact info */}
             <div className="mt-6 space-y-3">
               {[
-                { label: 'EMAIL', value: 'admin@it-specialist.dev', icon: '✉' },
-                { label: 'LOCATION', value: 'Available Remotely & On-Site', icon: '◉' },
+                { label: 'GITHUB', value: 'github.com/Jaylie3', icon: '⌥' },
+                { label: 'LOCATION', value: 'Bergville, KZN, South Africa', icon: '◉' },
                 { label: 'RESPONSE', value: 'Within 24 hours', icon: '⏱' },
                 { label: 'STATUS', value: 'Open to Opportunities', icon: '●' },
+                { label: 'EDUCATION', value: 'IIE Rosebank College — GPA 78.60%', icon: '◈' },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -265,8 +266,8 @@ export default function ContactSection() {
           className="mt-16 text-center font-mono text-xs text-gray-600 space-y-2"
         >
           <div className="w-full h-px bg-[#00d4ff]/10 mb-6" />
-          <div>IT SUPPORT SPECIALIST PORTFOLIO // BUILT WITH NEXT.JS + THREE.JS</div>
-          <div className="text-[#00d4ff]/40">© 2024 ALL SYSTEMS OPERATIONAL</div>
+          <div>LINDOKUHLE JALI // ICT SUPPORT SPECIALIST // BUILT WITH NEXT.JS + THREE.JS</div>
+          <div className="text-[#00d4ff]/40">© 2025 LINDO.DEV — ALL SYSTEMS OPERATIONAL</div>
         </motion.div>
       </div>
     </section>
