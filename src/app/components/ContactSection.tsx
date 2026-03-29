@@ -159,7 +159,7 @@ export default function ContactSection() {
                     <div className="text-6xl">✓</div>
                     <div className="font-mono text-[#00ff88] text-xl">MESSAGE_SENT</div>
                     <div className="font-mono text-gray-400 text-sm">
-                      Thank you! I&apos;ll get back to you within 24 hours.
+                      Thank you! I'll get back to you within 24 hours.
                     </div>
                     <button
                       onClick={() => {
