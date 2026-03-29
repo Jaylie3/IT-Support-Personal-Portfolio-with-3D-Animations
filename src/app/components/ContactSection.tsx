@@ -65,7 +65,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="font-mono text-[#00d4ff] text-sm tracking-widest mb-2">SECTION_04</div>
+          <div className="font-mono text-[#00d4ff] text-sm tracking-widest mb-2">SECTION_05</div>
           <h2 className="font-mono text-4xl lg:text-5xl font-bold text-white mb-4">
             <span className="text-[#00d4ff] cyber-glow">TERMINAL</span>
             <br />

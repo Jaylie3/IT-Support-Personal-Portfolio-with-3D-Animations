@@ -8,51 +8,68 @@ const TicketScene = dynamic(() => import('./TicketScene'), { ssr: false })
 const tickets = [
   {
     id: '#001',
-    category: 'AUTOMATION',
-    title: 'System Audit Automator',
+    category: 'IDENTITY',
+    title: 'Nexus Directory',
+    pitch: 'Architected a secure domain environment with GPO-enforced security protocols.',
     status: 'RESOLVED',
     priority: 'HIGH',
-    tech: ['Python', 'PowerShell', 'WMI', 'CSV Export'],
-    problem: 'Manual system audits taking 4+ hours per machine. No standardized reporting format. IT team spending excessive time on inventory and compliance checks.',
-    resolution: 'Developed a Python/PowerShell automation suite that scans all network machines, collects hardware specs, software inventory, and security compliance data. Generates standardized CSV/HTML reports. Reduced audit time from 4 hours to 8 minutes.',
-    metrics: ['95% time reduction', '200+ machines audited', 'Zero manual errors', 'Weekly automation'],
+    tech: ['Windows Server 2022', 'Active Directory', 'Group Policy', 'DNS/DHCP', 'AWS EC2'],
+    problem: 'No safe environment to test Group Policy changes, AD configurations, and security policies before deploying to production. User accounts scattered across departments with inconsistent access controls.',
+    resolution: 'Architected a full Active Directory domain on AWS EC2 with Windows Server 2022. Configured organizational units, GPO-enforced security protocols (password policies, USB lockdown, screensaver timeout), DNS, DHCP, and roaming profiles. Zero production incidents from untested changes.',
+    metrics: ['15+ GPOs Deployed', 'Zero Production Incidents', 'AD Replication 100%', 'Full Domain Trust'],
     color: '#00d4ff',
   },
   {
     id: '#002',
-    category: 'WEB / SUPPORT',
-    title: 'ICT Knowledge Base',
+    category: 'OPERATIONS',
+    title: 'ServiceHub ICT',
+    pitch: 'Deployed an end-to-end ITIL-aligned ticketing system for streamlined support.',
     status: 'RESOLVED',
-    priority: 'MEDIUM',
-    tech: ['React', 'Tailwind CSS', 'Next.js', 'Markdown'],
-    problem: 'Support team repeatedly answering the same questions. No centralized documentation. New staff onboarding taking 3+ weeks due to scattered knowledge.',
-    resolution: 'Built a full-stack ICT knowledge base with React and Tailwind CSS. Features include searchable articles, category filtering, step-by-step guides with screenshots, and an admin panel for content management. Integrated with existing ticketing system.',
-    metrics: ['60% fewer repeat tickets', '2-week onboarding time', '150+ articles', '4.8/5 staff rating'],
+    priority: 'HIGH',
+    tech: ['osTicket', 'PHP', 'MySQL', 'ITIL v4', 'Email Integration'],
+    problem: 'Support requests arriving via WhatsApp, email, and phone with no centralized tracking. No SLA enforcement, no escalation paths, and no historical data for recurring issues.',
+    resolution: 'Deployed and customized osTicket as a full ITIL-aligned helpdesk. Configured departments, ticket priorities, SLA plans, canned responses, and automated email routing. Integrated with staff AD accounts for single sign-on. Reduced average resolution time by 40%.',
+    metrics: ['40% Faster Resolution', '500+ Tickets Managed', 'SLA Compliance 94%', 'ITIL-Aligned Workflow'],
     color: '#00ff88',
   },
   {
     id: '#003',
-    category: 'NETWORKING',
-    title: 'Virtual AD Lab Setup',
+    category: 'AUTOMATION',
+    title: 'SysPulse Automator',
+    pitch: 'Optimized system audits and user onboarding using custom automation scripts.',
     status: 'RESOLVED',
-    priority: 'HIGH',
-    tech: ['Windows Server 2022', 'AWS EC2', 'Active Directory', 'Group Policy'],
-    problem: 'No safe environment to test Group Policy changes, AD configurations, and security policies before deploying to production. Risk of outages from untested changes.',
-    resolution: 'Designed and deployed a virtual Active Directory lab on AWS EC2 using Windows Server 2022. Configured domain controllers, DNS, DHCP, and implemented comprehensive Group Policy objects. Enables safe testing of all AD changes before production deployment.',
-    metrics: ['Zero production incidents', 'Full AD replication', '15+ GPOs tested', '100% uptime SLA'],
+    priority: 'MEDIUM',
+    tech: ['PowerShell', 'Python', 'WMI', 'Active Directory', 'HTML Reports'],
+    problem: 'Manual system audits taking 4+ hours per machine. New user onboarding requiring 2 hours of manual steps. No standardized reporting format for compliance checks.',
+    resolution: 'Developed a PowerShell/Python automation suite handling hardware audits, software inventory, and new user provisioning. Scripts collect CPU, RAM, disk health, serial numbers, and installed apps, then generate HTML reports. Onboarding time cut from 2 hours to 8 minutes.',
+    metrics: ['95% Time Reduction', '200+ Machines Audited', '8-Min Onboarding', 'Zero Manual Errors'],
     color: '#7700ff',
   },
   {
     id: '#004',
-    category: 'MONITORING',
-    title: 'Office Hardware Monitor',
+    category: 'CLOUD',
+    title: 'CloudOrbit Admin',
+    pitch: 'Provisioned and secured SaaS environments with MFA and conditional access.',
+    status: 'RESOLVED',
+    priority: 'HIGH',
+    tech: ['Microsoft 365', 'Azure AD', 'Intune MDM', 'Conditional Access', 'MFA Enforcement'],
+    problem: 'Remote staff accessing company data from unmanaged personal devices. No MFA enforcement, no device compliance policies, and Shadow IT causing security gaps across the department.',
+    resolution: 'Provisioned and hardened a Microsoft 365 tenant with Azure AD. Implemented Conditional Access policies, enforced MFA for all users, enrolled 100+ devices into Intune MDM, and created compliance baselines. Reduced unauthorized access attempts by 90%.',
+    metrics: ['MFA: 100% Enforced', '100+ Devices Enrolled', '90% Less Unauthorized Access', 'Zero Shadow IT Incidents'],
+    color: '#ff8800',
+  },
+  {
+    id: '#005',
+    category: 'DOCUMENTATION',
+    title: 'WikiFix Pro',
+    pitch: 'Developed a centralized technical repository to reduce recurring ticket volume.',
     status: 'ACTIVE',
     priority: 'LOW',
-    tech: ['Node.js', 'Ping API', 'WebSockets', 'Express'],
-    problem: 'IT team unaware of device failures until users reported issues. No proactive monitoring of printers, switches, and workstations. Average 45-min delay in incident response.',
-    resolution: 'Built a real-time Node.js monitoring dashboard that pings all office devices every 60 seconds. Features color-coded status indicators, incident history, email/SMS alerts, and auto-ticket creation in the helpdesk system when devices go offline.',
-    metrics: ['45min → 2min response', '99.9% detection rate', '80 devices monitored', 'Auto-alerting'],
-    color: '#ff8800',
+    tech: ['React', 'Next.js', 'Tailwind CSS', 'Markdown', 'Search Indexing'],
+    problem: 'Support team repeatedly answering the same questions. New staff onboarding taking 3+ weeks due to scattered tribal knowledge. No searchable knowledge base for common fixes.',
+    resolution: 'Built a full-stack ICT knowledge base with React and Next.js. Features searchable articles, category filtering, step-by-step guides with screenshots, and an admin panel for content management. Reduced recurring tickets by 60%.',
+    metrics: ['60% Fewer Repeat Tickets', '2-Week Onboarding', '150+ Articles', '4.8/5 Staff Rating'],
+    color: '#ff4488',
   },
 ]
 
@@ -96,7 +113,8 @@ function TicketCard({ ticket, onOpen }: { ticket: typeof tickets[0]; onOpen: () 
         </div>
       </div>
 
-      <h3 className="font-mono text-lg font-bold text-white mb-3">{ticket.title}</h3>
+      <h3 className="font-mono text-lg font-bold text-white mb-1">{ticket.title}</h3>
+      <p className="font-mono text-xs text-gray-500 mb-3 leading-relaxed">{ticket.pitch}</p>
 
       <div className="flex flex-wrap gap-1 mb-4">
         {ticket.tech.map((t) => (
@@ -254,14 +272,14 @@ export default function PortfolioSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="font-mono text-[#00d4ff] text-sm tracking-widest mb-2">SECTION_03</div>
+          <div className="font-mono text-[#00d4ff] text-sm tracking-widest mb-2">SECTION_04</div>
           <h2 className="font-mono text-4xl lg:text-5xl font-bold text-white mb-4">
-            INTERACTIVE
+            PROJECT
             <br />
-            <span className="text-[#00d4ff] cyber-glow">TROUBLESHOOTING</span>
+            <span className="text-[#00d4ff] cyber-glow">ARCHIVE</span>
           </h2>
           <p className="font-mono text-gray-500 text-sm max-w-md mx-auto">
-            Open a ticket to view the problem statement and resolution with 3D visualization
+            Real-world IT projects — click a ticket to explore the problem, solution, and key metrics
           </p>
           <div className="w-24 h-px bg-[#00d4ff] mx-auto mt-4" />
         </motion.div>

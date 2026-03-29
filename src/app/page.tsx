@@ -5,6 +5,7 @@ import ContactSection from './components/ContactSection'
 
 const HeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false })
 const SkillsSection = dynamic(() => import('./components/SkillsSection'), { ssr: false })
+const ToolsSection = dynamic(() => import('./components/ToolsSection'), { ssr: false })
 const PortfolioSection = dynamic(() => import('./components/PortfolioSection'), { ssr: false })
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <SkillsSection />
+      <ToolsSection />
       <PortfolioSection />
       <ContactSection />
     </main>

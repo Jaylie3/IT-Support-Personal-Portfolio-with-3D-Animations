@@ -1,8 +1,20 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
+
+function LineSegment({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
+  const lineObject = useMemo(() => {
+    const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)]
+    const geo = new THREE.BufferGeometry().setFromPoints(points)
+    const mat = new THREE.LineBasicMaterial({ color: '#00d4ff', transparent: true, opacity: 0.4 })
+    return new THREE.Line(geo, mat)
+  // start/end come from a static constant array so deps won't change
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  return <primitive object={lineObject} />
+}
 
 function NetworkViz() {
   const groupRef = useRef<THREE.Group>(null)
@@ -31,15 +43,9 @@ function NetworkViz() {
           />
         </mesh>
       ))}
-      {nodes.slice(1).map((pos, i) => {
-        const start = new THREE.Vector3(...nodes[0])
-        const end = new THREE.Vector3(...pos)
-        const points = [start, end]
-        const geo = new THREE.BufferGeometry().setFromPoints(points)
-        const mat = new THREE.LineBasicMaterial({ color: '#00d4ff', transparent: true, opacity: 0.4 })
-        const lineObj = new THREE.Line(geo, mat)
-        return <primitive key={i} object={lineObj} />
-      })}
+      {nodes.slice(1).map((pos, i) => (
+        <LineSegment key={i} start={nodes[0]} end={pos} />
+      ))}
     </group>
   )
 }
