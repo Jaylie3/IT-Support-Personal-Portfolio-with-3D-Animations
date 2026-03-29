@@ -9,12 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'electric-blue': '#00d4ff',
-        'deep-grey': '#1a1a2e',
-        'mid-grey': '#16213e',
+        accent: '#6366f1',
+        'accent-light': '#818cf8',
+        'accent-2': '#8b5cf6',
+        surface: '#18181b',
+        'surface-2': '#27272a',
       },
       fontFamily: {
-        mono: ['Courier New', 'monospace'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
       },
     },
   },
