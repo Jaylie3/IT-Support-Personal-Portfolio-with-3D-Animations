@@ -11,16 +11,13 @@ const PortfolioSection = dynamic(() => import('./components/PortfolioSection'), 
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0a0f]">
+    <main className="min-h-screen bg-[#09090b]">
       <Navigation />
-      {/* md:pl-[72px] offsets content for the sidebar on desktop */}
-      <div className="md:pl-[72px]">
-        <HeroSection />
-        <SkillsSection />
-        <ToolsSection />
-        <PortfolioSection />
-        <ContactSection />
-      </div>
+      <HeroSection />
+      <SkillsSection />
+      <ToolsSection />
+      <PortfolioSection />
+      <ContactSection />
       <PersistentTerminal />
     </main>
   )

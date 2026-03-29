@@ -674,10 +674,10 @@ function ToolCard({ tool, index }: { tool: ToolItem; index: number }) {
       whileHover={{ scale: 1.03, y: -6 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="rounded-lg overflow-hidden bg-[#0d1117]/80 cursor-pointer flex flex-col"
+      className="rounded-xl overflow-hidden bg-surface/70 cursor-pointer flex flex-col"
       style={{
-        border: `1px solid ${tool.color}35`,
-        boxShadow: hovered ? `0 0 24px ${tool.color}25` : 'none',
+        border: `1px solid rgba(255,255,255,0.07)`,
+        boxShadow: hovered ? `0 8px 32px rgba(99,102,241,0.18)` : 'none',
         transition: 'box-shadow 0.3s ease',
       }}
     >
@@ -702,14 +702,14 @@ function ToolCard({ tool, index }: { tool: ToolItem; index: number }) {
 
         {/* Accent corner badge */}
         <div
-          className="absolute top-2 left-2 font-mono text-[10px] px-2 py-0.5 rounded border"
+          className="absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full"
           style={{
             color: tool.color,
-            borderColor: `${tool.color}40`,
-            background: `${tool.color}15`,
+            background: `${tool.color}18`,
+            border: `1px solid ${tool.color}30`,
           }}
         >
-          ACTIVE
+          Active
         </div>
         {/* Hover indicator */}
         {hovered && (
@@ -723,18 +723,16 @@ function ToolCard({ tool, index }: { tool: ToolItem; index: number }) {
       {/* Text area */}
       <div className="p-5 flex flex-col flex-1">
         <div
-          className="font-mono text-xs tracking-widest mb-1"
+          className="text-xs font-semibold uppercase tracking-widest mb-1"
           style={{ color: tool.color }}
         >
           {tool.role}
         </div>
-        <h3 className="font-mono text-lg font-bold text-white mb-2">{tool.name}</h3>
-        <p className="font-mono text-xs text-gray-400 leading-relaxed flex-1">{tool.action}</p>
+        <h3 className="text-lg font-bold text-white mb-2">{tool.name}</h3>
+        <p className="text-xs text-white/40 leading-relaxed flex-1">{tool.action}</p>
         <div className="mt-4 flex items-center gap-2">
-          <span className="animate-pulse text-xs" style={{ color: tool.color }}>
-            ●
-          </span>
-          <span className="font-mono text-xs text-gray-600">FIELD_DEPLOYED</span>
+          <span className="animate-pulse text-xs" style={{ color: tool.color }}>●</span>
+          <span className="text-xs text-white/25 font-medium">Deployed</span>
         </div>
       </div>
     </motion.div>
@@ -748,28 +746,32 @@ export default function ToolsSection() {
   const inView = useInView(ref, { once: true })
 
   return (
-    <section id="arsenal" className="py-24 relative grid-bg overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d1117] to-[#0a0a0f] opacity-95" />
+    <section id="arsenal" className="py-28 relative overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 40% at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 70%), #09090b',
+        }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
           className="text-center mb-16"
         >
-          <div className="font-mono text-[#00d4ff] text-sm tracking-widest mb-2">SECTION_03</div>
-          <h2 className="font-mono text-4xl lg:text-5xl font-bold text-white mb-4">
-            IT
-            <br />
-            <span className="text-[#00d4ff] cyber-glow">ARSENAL</span>
+          <span className="section-label justify-center">IT Arsenal</span>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-white mt-3 mb-4 tracking-tight">
+            Tools I <span className="gradient-text">Deploy Daily</span>
           </h2>
-          <p className="font-mono text-gray-500 text-sm max-w-md mx-auto">
-            The tools I deploy in the field — hover each card to see them in action
+          <p className="text-white/40 text-base max-w-md mx-auto">
+            The software and platforms I use in the field — hover each card to see them in action.
           </p>
-          <div className="w-24 h-px bg-[#00d4ff] mx-auto mt-4" />
+          <div className="divider mx-auto mt-6" />
         </motion.div>
 
         {/* Tool grid */}
@@ -784,11 +786,11 @@ export default function ToolsSection() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.9 }}
-          className="mt-8 cyber-border rounded p-4 bg-[#0d1117]/40 font-mono text-xs flex flex-wrap gap-6 justify-center text-gray-500"
+          className="mt-8 glass rounded-xl p-4 flex flex-wrap gap-6 justify-center text-sm text-white/30"
         >
-          <span>TOOLS_DEPLOYED: {tools.length}</span>
-          <span className="text-[#00ff88]">STATUS: BATTLE_TESTED</span>
-          <span className="text-[#00d4ff]">ENVIRONMENT: PRODUCTION</span>
+          <span>{tools.length} tools in use</span>
+          <span className="text-emerald-400/70">All battle-tested in production</span>
+          <span className="text-accent-light/70">Enterprise-grade environments</span>
         </motion.div>
       </div>
     </section>

@@ -5,20 +5,9 @@ import dynamic from 'next/dynamic'
 
 const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false })
 
-const systemStats = [
-  { label: 'UPTIME', value: '99.9%', color: '#00ff88' },
-  { label: 'TICKETS_RESOLVED', value: '500+', color: '#00d4ff' },
-  { label: 'SYSTEMS_MANAGED', value: '50+', color: '#00d4ff' },
-  { label: 'RESPONSE_TIME', value: '<2min', color: '#00ff88' },
-  { label: 'SATISFACTION', value: '98%', color: '#00ff88' },
-  { label: 'YEARS_EXP', value: '3+', color: '#7700ff' },
-]
-
-const FULL_TEXT = 'Solving complex problems through stable systems.'
 const IDENTITY = {
   name: 'Lindokuhle Nkosinathi Jali',
   handle: 'Lindo',
-  role: 'ICT Support Specialist & Web Developer',
   location: 'Bergville, KZN, South Africa',
   education: 'IIE Rosebank College — GPA 78.60%',
   github: 'https://github.com/Jaylie3',
@@ -26,152 +15,167 @@ const IDENTITY = {
   currentRole: 'ICT Intern @ Okhahlamba DTDC',
 }
 
+const ROLES = [
+  'ICT Support Specialist',
+  'Web Developer',
+  'System Administrator',
+  'IT Infrastructure Engineer',
+]
+
+const stats = [
+  { label: 'Tickets Resolved', value: '500+' },
+  { label: 'Systems Managed', value: '50+' },
+  { label: 'Client Satisfaction', value: '98%' },
+  { label: 'Years Experience', value: '3+' },
+]
+
 export default function HeroSection() {
-  const [showStats, setShowStats] = useState(false)
-  const [typedText, setTypedText] = useState('')
+  const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      if (i < FULL_TEXT.length) {
-        setTypedText(FULL_TEXT.slice(0, i + 1))
-        i++
-      } else {
-        clearInterval(timer)
-      }
-    }, 50)
-    return () => clearInterval(timer)
+    const t = setInterval(() => setRoleIndex((i) => (i + 1) % ROLES.length), 3000)
+    return () => clearInterval(t)
   }, [])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden grid-bg">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#0d1117] to-[#1a1a2e] opacity-90" />
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.14) 0%, transparent 70%), #09090b',
+        }}
+      />
+      {/* Subtle dot grid */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
-          {/* Text Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-24">
+          {/* ── Text Column ── */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="space-y-8"
           >
-            <div className="flex items-center space-x-2">
-              <span className="text-[#00ff88] font-mono text-sm animate-pulse">●</span>
-              <span className="text-[#00ff88] font-mono text-sm tracking-widest">SYSTEM_ONLINE</span>
-            </div>
+            {/* Availability badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold"
+              style={{
+                background: 'rgba(16,185,129,0.1)',
+                border: '1px solid rgba(16,185,129,0.2)',
+                color: '#34d399',
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Open to opportunities
+            </motion.div>
 
+            {/* Heading */}
             <div>
-              <h1 className="text-5xl lg:text-7xl font-bold font-mono leading-tight">
-                <span className="text-white">IT</span>
-                <br />
-                <span className="text-[#00d4ff] cyber-glow">SUPPORT</span>
-                <br />
-                <span className="text-white">SPECIALIST</span>
+              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight">
+                <span className="text-white">Hi, I&apos;m </span>
+                <span className="gradient-text">{IDENTITY.handle}</span>
               </h1>
-              <div className="mt-3 font-mono text-sm text-gray-400">
-                <span className="text-[#00ff88]">◈</span>{' '}
-                <span className="text-white font-semibold">{IDENTITY.name}</span>
-                <span className="text-gray-600"> ·· </span>
-                <span className="text-[#00d4ff]/70">{IDENTITY.location}</span>
-              </div>
-              <div className="mt-1 font-mono text-xs text-gray-600">
-                {IDENTITY.education}
-                <span className="mx-2 text-[#00d4ff]/30">|</span>
-                <a
-                  href={IDENTITY.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#00d4ff]/60 hover:text-[#00d4ff] transition-colors"
-                >
-                  github.com/{IDENTITY.githubHandle}
-                </a>
+
+              {/* Animated role */}
+              <div className="mt-4 h-9 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={roleIndex}
+                    initial={{ y: 18, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -18, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="text-xl lg:text-2xl font-medium text-white/40"
+                  >
+                    {ROLES[roleIndex]}
+                  </motion.p>
+                </AnimatePresence>
               </div>
             </div>
 
-            <div className="font-mono text-gray-400 text-lg min-h-[2rem]">
-              <span className="text-[#00d4ff]">&gt;</span> {typedText}
-              <span className="terminal-cursor" />
-            </div>
-
-            <p className="text-gray-500 font-mono text-sm leading-relaxed max-w-md">
-              Specialized in IT Infrastructure & User Experience.<br />
-              Building resilient networks, automating workflows,<br />
-              and keeping systems running at peak performance.
+            <p className="text-base text-white/40 leading-relaxed max-w-md">
+              Solving complex IT infrastructure challenges with precision and reliability.
+              Currently <span className="text-white/60 font-medium">{IDENTITY.currentRole}</span>{' '}
+              in {IDENTITY.location}.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowStats(!showStats)}
-                className="cyber-button scan-line"
-              >
-                {showStats ? 'CLOSE_STATS' : 'SYSTEM_CHECK'}
-              </motion.button>
-
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3">
               <motion.a
                 href="#portfolio"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="cyber-button text-center"
-                style={{ borderColor: '#00ff88', color: '#00ff88' }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="btn-primary"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
-                VIEW_WORK
+                View My Work →
+              </motion.a>
+              <motion.a
+                href={IDENTITY.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="btn-secondary"
+              >
+                GitHub Profile
               </motion.a>
             </div>
 
-            {/* Stats Panel */}
-            <AnimatePresence>
-              {showStats && (
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {stats.map((stat, i) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 20, height: 0 }}
-                  animate={{ opacity: 1, y: 0, height: 'auto' }}
-                  exit={{ opacity: 0, y: -10, height: 0 }}
-                  className="cyber-border rounded bg-[#0d1117]/80 p-4"
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  className="glass rounded-xl p-4 text-center"
                 >
-                  <div className="font-mono text-[#00d4ff] text-xs mb-3 tracking-widest">
-                    SYSTEM_DIAGNOSTICS :: RUNNING...
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {systemStats.map((stat, i) => (
-                      <motion.div
-                        key={stat.label}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="bg-[#0a0a0f]/60 p-2 rounded border border-[#00d4ff]/10"
-                      >
-                        <div className="text-gray-500 font-mono text-xs">{stat.label}</div>
-                        <div
-                          className="font-mono text-lg font-bold"
-                          style={{ color: stat.color }}
-                        >
-                          {stat.value}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <div className="text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-xs text-white/35 mt-1 leading-tight">{stat.label}</div>
                 </motion.div>
-              )}
-            </AnimatePresence>
+              ))}
+            </div>
           </motion.div>
 
-          {/* 3D Scene */}
+          {/* ── 3D Scene Column ── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="h-[500px] lg:h-[600px] relative"
+            transition={{ duration: 1, delay: 0.3 }}
+            className="h-[480px] lg:h-[580px] relative"
           >
-            <HeroScene />
+            <div
+              className="absolute inset-0 rounded-2xl overflow-hidden"
+              style={{
+                background: 'rgba(99,102,241,0.04)',
+                border: '1px solid rgba(99,102,241,0.14)',
+              }}
+            >
+              <HeroScene />
+            </div>
 
-            {/* Overlay labels */}
-            <div className="absolute top-4 right-4 font-mono text-xs text-[#00d4ff]/60 space-y-1">
-              <div>SYS_TEMP: 42°C</div>
-              <div>CPU: 12%</div>
-              <div>RAM: 64GB</div>
+            {/* Info labels */}
+            <div className="absolute top-4 right-4 text-right space-y-1">
+              <div className="text-[11px] text-white/20 font-mono">{IDENTITY.education}</div>
+              <div className="text-[11px] text-white/20 font-mono">3D Interactive</div>
             </div>
           </motion.div>
         </div>
@@ -179,11 +183,12 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 font-mono text-[#00d4ff]/40 text-xs text-center"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 text-xs"
       >
-        <div>▼ SCROLL ▼</div>
+        <div className="w-px h-8 bg-gradient-to-b from-transparent to-white/20 rounded-full" />
+        Scroll
       </motion.div>
     </section>
   )
