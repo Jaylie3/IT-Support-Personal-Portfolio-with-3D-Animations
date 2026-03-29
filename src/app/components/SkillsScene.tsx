@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -21,12 +21,15 @@ function NetworkNode({ position, color }: { position: [number, number, number]; 
 }
 
 function NetworkLine({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
-  const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)]
-  const geometry = new THREE.BufferGeometry().setFromPoints(points)
-  const material = new THREE.LineBasicMaterial({ color: '#00d4ff', transparent: true, opacity: 0.3 })
-  const lineObj = new THREE.Line(geometry, material)
+  const { geometry, material } = useMemo(() => {
+    const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)]
+    const geometry = new THREE.BufferGeometry().setFromPoints(points)
+    const material = new THREE.LineBasicMaterial({ color: '#00d4ff', transparent: true, opacity: 0.3 })
+    return { geometry, material }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [start[0], start[1], start[2], end[0], end[1], end[2]])
 
-  return <primitive object={lineObj} />
+  return <primitive object={new THREE.Line(geometry, material)} />
 }
 
 export function NetworkScene() {

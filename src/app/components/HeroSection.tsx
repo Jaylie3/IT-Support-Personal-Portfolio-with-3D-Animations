@@ -14,16 +14,17 @@ const systemStats = [
   { label: 'YEARS_EXP', value: '3+', color: '#7700ff' },
 ]
 
+const FULL_TEXT = 'Solving complex problems through stable systems.'
+
 export default function HeroSection() {
   const [showStats, setShowStats] = useState(false)
   const [typedText, setTypedText] = useState('')
-  const fullText = 'Solving complex problems through stable systems.'
 
   useEffect(() => {
     let i = 0
     const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setTypedText(fullText.slice(0, i + 1))
+      if (i < FULL_TEXT.length) {
+        setTypedText(FULL_TEXT.slice(0, i + 1))
         i++
       } else {
         clearInterval(timer)
