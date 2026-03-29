@@ -79,34 +79,39 @@ function OrbitingLogo({ radius, speed, offset, color }: { radius: number; speed:
   )
 }
 
-export function CloudScene() {
+function RotatingCloud() {
   const cloudRef = useRef<THREE.Group>(null)
   useFrame((state) => {
     if (cloudRef.current) {
       cloudRef.current.rotation.y = state.clock.elapsedTime * 0.5
     }
   })
+  return (
+    <group ref={cloudRef}>
+      {/* Cloud shape */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.6, 16, 16]} />
+        <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
+      </mesh>
+      <mesh position={[0.5, 0.2, 0]}>
+        <sphereGeometry args={[0.4, 16, 16]} />
+        <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
+      </mesh>
+      <mesh position={[-0.5, 0.2, 0]}>
+        <sphereGeometry args={[0.4, 16, 16]} />
+        <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
+      </mesh>
+    </group>
+  )
+}
 
+export function CloudScene() {
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 60 }} gl={{ alpha: true }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 5, 5]} color="#4488ff" intensity={2} />
       <Float speed={1} floatIntensity={0.5}>
-        <group ref={cloudRef}>
-          {/* Cloud shape */}
-          <mesh position={[0, 0, 0]}>
-            <sphereGeometry args={[0.6, 16, 16]} />
-            <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
-          </mesh>
-          <mesh position={[0.5, 0.2, 0]}>
-            <sphereGeometry args={[0.4, 16, 16]} />
-            <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
-          </mesh>
-          <mesh position={[-0.5, 0.2, 0]}>
-            <sphereGeometry args={[0.4, 16, 16]} />
-            <meshStandardMaterial color="#1a3a6e" metalness={0.3} roughness={0.7} transparent opacity={0.9} />
-          </mesh>
-        </group>
+        <RotatingCloud />
       </Float>
 
       {/* Orbiting logos */}
